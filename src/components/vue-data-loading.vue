@@ -1,6 +1,6 @@
 <template>
     <div class="vue-data-loading">
-        <div class="loading-header" :style="{height: pullHeight + 'px'}" v-show="PULL_DOWN === pull.type">
+        <div class="loading-header" :style="{height: pullHeight + 'px'}" v-show="PULL_DOWN === pull.type && pulldown">
             <div class="header-text" v-show="!pull.available">
                 <slot :name="PULL_DOWN + '-before'">下拉刷新数据</slot>
             </div>
@@ -75,6 +75,10 @@
                 type: Boolean,
                 default: false,
             },
+            pulldown: {
+                type: Boolean,
+                default: false,
+            }
         },
         data() {
             return {
