@@ -16,7 +16,7 @@
             <slot></slot>
         </div>
 
-        <div class="loading-footer" :style="{height: pullHeight + 'px'}" v-show="PULL_UP === pull.type">
+        <div class="loading-footer" :style="{height: pullHeight + 'px'}" v-show="PULL_UP === pull.type && !completed">
             <div class="footer-text" v-show="!pull.available">
                 <slot :name="PULL_UP + '-before'">上拉加载数据</slot>
             </div>
@@ -233,9 +233,6 @@
             .footer-text {
                 top: 20px;
             }
-        }
-        .loading-content {
-
         }
     }
 </style>
