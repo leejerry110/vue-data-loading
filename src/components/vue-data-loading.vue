@@ -39,7 +39,6 @@
                 <slot :name="completed">加载完毕</slot>
             </div>
         </div>
-
     </div>
 </template>
 

@@ -1,10 +1,9 @@
 {
-  "name": "vue-data-loading",
+  "name": "infinite-loading",
   "version": "0.2.3",
-  "description": "Another component for infinite scroll and pull down/up to load data.",
-  "homepage": "http://hacknews.xyz",
+  "description": "vue-infinite-loading based on bedlate's vue-data-loading",
   "main": "dist/index.js",
-  "author": "bedlate <bedlate@gmail.com>",
+  "author": "lee_jerry110@sina.com",
   "license": "MIT",
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -16,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bedlate/vue-data-loading.git"
+    "url": "git+https://github.com/leejerry110/vue-data-loading.git"
   },
   "keywords": [
     "infinite-scroll",
