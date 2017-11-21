@@ -1,6 +1,6 @@
 <template>
     <div class="vue-data-loading">
-        <div class="loading-header" :style="{height: pullHeight + 'px'}" v-show="PULL_DOWN === pull.type && pulldown">
+        <div class="loading-header" :style="{height: pullHeight + 'px'}" v-if="PULL_DOWN === pull.type && pulldown">
             <div class="header-text" v-show="!pull.available">
                 <slot :name="PULL_DOWN + '-before'">下拉刷新数据</slot>
             </div>
@@ -16,7 +16,7 @@
             <slot></slot>
         </div>
 
-        <div class="loading-footer" :style="{height: pullHeight + 'px'}" v-show="PULL_UP === pull.type && !completed">
+        <div class="loading-footer" :style="{height: pullHeight + 'px'}" v-if="PULL_UP === pull.type && !completed">
             <div class="footer-text" v-show="!pull.available">
                 <slot :name="PULL_UP + '-before'">上拉加载数据</slot>
             </div>
@@ -28,15 +28,15 @@
             </div>
         </div>
 
-        <div class="loading-footer" :style="{height: distance + 'px'}" v-show="loading && INFINITE_SCROLL === loadingType">
+        <div class="loading-footer" :style="{height: distance + 'px'}" v-if="loading && INFINITE_SCROLL === loadingType && !completed">
             <div class="footer-text">
                 <slot :name="INFINITE_SCROLL + '-loading'">加载中...</slot>
             </div>
         </div>
 
-        <div class="loading-footer" :style="{height: distance + 'px'}" v-show="!loading && completed">
+        <div class="loading-footer" :style="{height: distance + 'px'}" v-if="!loading && completed">
             <div class="footer-text">
-                <slot :name="completed">加载完毕</slot>
+                <slot name="completed">已加载全部内容</slot>
             </div>
         </div>
     </div>
@@ -220,8 +220,8 @@
             position: relative;
             text-align: center;
 
-            font-size: 0.8em;
-            color: #868e96;
+            font-size: 30px;
+            color: #999999;
 
             .header-text, .footer-text {
                 width: 100%;
@@ -231,7 +231,7 @@
                 bottom: 20px;
             }
             .footer-text {
-                top: 20px;
+                padding: 20px 0 40px 0;
             }
         }
     }
