@@ -1,6 +1,6 @@
 {
   "name": "infinite-loading",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "vue-infinite-loading based on bedlate's vue-data-loading",
   "main": "dist/index.js",
   "author": "lee_jerry110@sina.com",
