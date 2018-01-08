@@ -1,3 +1,11 @@
+<!--
+@Author: lichongyang <cotex>
+@Date:   2017-11-14T14:26:03+08:00
+@Email:  lee_jerry110@sina.com
+@Project: maitao
+@Last modified by:   cotex
+@Last modified time: 2018-01-08T17:07:55+08:00
+-->
 <template>
     <div class="vue-data-loading">
         <div class="loading-header" :style="{height: pullHeight + 'px'}" v-if="PULL_DOWN === pull.type && pulldown">
@@ -15,30 +23,31 @@
         <div class="loading-content">
             <slot></slot>
         </div>
+        <template v-if='showFooter'>
+          <div class="loading-footer" :style="{height: pullHeight + 'px'}" v-if="PULL_UP === pull.type && !completed">
+              <div class="footer-text" v-show="!pull.available">
+                  <slot :name="PULL_UP + '-before'">上拉加载数据</slot>
+              </div>
+              <div class="footer-text" v-show="pull.available && PULL_UP !== loadingType">
+                  <slot :name="PULL_UP + '-ready'">松开加载数据</slot>
+              </div>
+              <div class="footer-text" v-show="PULL_UP === loadingType">
+                  <slot :name="PULL_UP + '-loading'">加载中...</slot>
+              </div>
+          </div>
 
-        <div class="loading-footer" :style="{height: pullHeight + 'px'}" v-if="PULL_UP === pull.type && !completed">
-            <div class="footer-text" v-show="!pull.available">
-                <slot :name="PULL_UP + '-before'">上拉加载数据</slot>
-            </div>
-            <div class="footer-text" v-show="pull.available && PULL_UP !== loadingType">
-                <slot :name="PULL_UP + '-ready'">松开加载数据</slot>
-            </div>
-            <div class="footer-text" v-show="PULL_UP === loadingType">
-                <slot :name="PULL_UP + '-loading'">加载中...</slot>
-            </div>
-        </div>
+          <div class="loading-footer" :style="{height: distance + 'px'}" v-if="loading && INFINITE_SCROLL === loadingType && !completed">
+              <div class="footer-text">
+                  <slot :name="INFINITE_SCROLL + '-loading'">加载中...</slot>
+              </div>
+          </div>
 
-        <div class="loading-footer" :style="{height: distance + 'px'}" v-if="loading && INFINITE_SCROLL === loadingType && !completed">
-            <div class="footer-text">
-                <slot :name="INFINITE_SCROLL + '-loading'">加载中...</slot>
-            </div>
-        </div>
-
-        <div class="loading-footer" :style="{height: distance + 'px'}" v-if="!loading && completed">
-            <div class="footer-text">
-                <slot name="completed">已加载全部内容</slot>
-            </div>
-        </div>
+          <div class="loading-footer" :style="{height: distance + 'px'}" v-if="!loading && completed">
+              <div class="footer-text">
+                  <slot name="completed">已加载全部内容</slot>
+              </div>
+          </div>
+        </template>
     </div>
 </template>
 
@@ -77,7 +86,11 @@
             pulldown: {
                 type: Boolean,
                 default: false,
-            }
+            },
+            showFooter: {
+                type: Boolean,
+                default: true,
+            },
         },
         data() {
             return {
